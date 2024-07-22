@@ -1,0 +1,354 @@
+openapi: 3.0.3
+info:
+  title: Expense Tracker API
+  version: 1.0.11
+  description: This is a simple of API which is managing expenses of any user/client.
+servers:
+  - url: http://localhost:3000/{version}
+    variables:
+      version:
+        default: v1
+        enum:
+          - v1
+tags:
+  - name: account
+    description: About account authentication
+  - name: expenses
+    description: About expenses of a user
+paths:
+  "/signup":
+    post:
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            example: |-
+              username:user
+              email:user@gmail.com
+              password:user123
+              
+      summary: Used to create a user
+      description: ''
+      operationId: ''
+      responses:
+        201:
+          description: If the operation is success
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "id": "abcdef123",
+                      "name": "user"
+                    }
+        409:
+          description: If the user already exists
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 409,
+                      "error": "Conflict",
+                      "message": "User's email is already exists"
+                    }
+        500:
+          description: If the server error
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 500,
+                      "error": "Internal Server Error",
+                      "message": "Something went wrong with server"
+                    }
+                  
+      tags:
+        - account
+  "/signin":
+    post:
+      summary: Used to sign-in a user
+      description: ''
+      operationId: ''
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            example: |-
+              email:user@gmail.com
+              password:user123
+      responses:
+        200:
+          description: If the operation is success
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "id": "abcdef123",
+                      "name": "user"
+                    }
+        409:
+          description: If the email or password is invalid
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 401,
+                      "error": "Unauthorized",
+                      "message": "Email or password is invalid"
+                    }
+        500:
+          description: If the server error
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 500,
+                      "error": "Internal Server Error",
+                      "message": "Something went wrong with server"
+                    }
+                  
+      tags:
+        - account
+  "/expenses/{userId}":
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        description: User's Id
+        schema:
+          type: string
+          example: abcdef12345
+    get:
+      summary: Used to get all user's expenses
+      description: ''
+      operationId: ''
+      parameters:
+        - name: filter
+          in: query
+          description: Can be used to filter the expenses by the date
+          schema:
+            type: string
+            example: "01/07/2023-30/07/2023"
+        - name: categories
+          in: query
+          description: Can be used to filter the expenses by the categories
+          schema:
+            type: string
+            example: "Clothing,Health,Other"
+      responses:
+        200:
+          description: If the operation is success
+          content:
+            application/json:
+              examples:
+                exists:
+                  value:
+                    [
+                      {
+                        "amount": 100,
+                        "description": "Example 1",
+                        "category": "Other"
+                      },
+                      {
+                        "amount": 120,
+                        "description": "Example 2",
+                        "category": "Utilities"
+                      },
+                      {
+                        "amount": 50,
+                        "description": "Example 3",
+                        "category": "Health"
+                      }
+                    ]
+                empty:
+                  value: []
+        400:
+          description: If the operation is failed
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 400,
+                      "error": "Bad Request",
+                      "message": "Something went wrong with the request"
+                    }
+        500:
+          description: If the server is failed to handle the request
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 500,
+                      "error": "Internal Server Error",
+                      "message": "Something went wrong with the server"
+                    }
+                  
+      tags:
+        - expenses
+    post:
+      summary: Used to create an expense
+      description: ''
+      operationId: ''
+      responses:
+        201:
+          description: If the operation is success
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "id": "abc123",
+                      "amount": 100,
+                      "description": "Example 1",
+                      "category": "Other"
+                    }
+        400:
+          description: If the operation is failed
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 400,
+                      "error": "Bad Request",
+                      "message": "Something went wrong with the request"
+                    }
+        500:
+          description: If the server is failed to handle the request
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 500,
+                      "error": "Internal Server Error",
+                      "message": "Something went wrong with the server"
+                    }
+                  
+      tags:
+        - expenses
+  "/expenses/{userId}/{expenseId}":
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        description: User's Id
+        schema:
+          type: string
+          example: abcdef12345
+      - name: expenseId
+        in: path
+        required: true
+        description: Expense's Id
+        schema:
+          type: string
+          example: abcdef12345
+    put:
+      summary: Used to update an expense
+      description: ''
+      operationId: ''
+      responses:
+        200:
+          description: If the operation is success. The return data is after the update.
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "id": "abc123",
+                      "amount": 120,
+                      "description": "Example 1",
+                      "category": "Clothing"
+                    }
+        400:
+          description: If the operation is failed
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 400,
+                      "error": "Bad Request",
+                      "message": "Something went wrong with the request"
+                    }
+        500:
+          description: If the server is failed to handle the request
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 500,
+                      "error": "Internal Server Error",
+                      "message": "Something went wrong with the server"
+                    }
+                  
+      tags:
+        - expenses
+    delete:
+      summary: Used to delete an expense
+      description: ''
+      operationId: ''
+      responses:
+        204:
+          description: If the operation is success.
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 204,
+                      "error": "No Content",
+                      "message": ""
+                    }
+        400:
+          description: If the operation is failed
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 400,
+                      "error": "Bad Request",
+                      "message": "Something went wrong with the request"
+                    }
+        500:
+          description: If the server is failed to handle the request
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 500,
+                      "error": "Internal Server Error",
+                      "message": "Something went wrong with the server"
+                    }
+                  
+      tags:
+        - expenses
