@@ -10,6 +10,14 @@ servers:
         default: v1
         enum:
           - v1
+components:
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: cookie
+      name: Token
+security:
+  - JWTAuth: []
 tags:
   - name: account
     description: About account authentication
