@@ -19,12 +19,12 @@ components:
 security:
   - JWTAuth: []
 tags:
-  - name: account
+  - name: accounts
     description: About account authentication
   - name: expenses
     description: About expenses of a user
 paths:
-  "/signup":
+  "/accounts/signup":
     post:
       requestBody:
         content:
@@ -77,8 +77,8 @@ paths:
                     }
                   
       tags:
-        - account
-  "/signin":
+        - accounts
+  "/accounts/signin":
     post:
       summary: Used to sign-in a user
       description: ''
@@ -129,7 +129,7 @@ paths:
                     }
                   
       tags:
-        - account
+        - accounts
   "/expenses/{userId}":
     parameters:
       - name: userId
