@@ -141,13 +141,10 @@ paths:
         204:
           description: If the operation is success
           content:
-            application/json:
+            none:
               examples:
                 default:
-                  value:
-                    {
-                      "success": true
-                    }
+                  value: ''
         400:
           description: If the operation is failed (request is bad)
           content:
@@ -200,7 +197,7 @@ paths:
           description: Can be used to filter the expenses by the categories
           schema:
             type: string
-            example: "Clothing,Health,Other"
+            example: "Clothing,Health,Others"
       responses:
         200:
           description: If the operation is success
@@ -211,16 +208,19 @@ paths:
                   value:
                     [
                       {
+                        "id": "abc123",
                         "amount": 100,
                         "description": "Example 1",
-                        "category": "Other"
+                        "category": "Others"
                       },
                       {
+                        "id": "def456",
                         "amount": 120,
                         "description": "Example 2",
                         "category": "Utilities"
                       },
                       {
+                        "id": "ghi789",
                         "amount": 50,
                         "description": "Example 3",
                         "category": "Health"
@@ -259,6 +259,14 @@ paths:
       summary: Used to create an expense
       description: ''
       operationId: ''
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            example: |-
+              amount:100
+              description:Example 1
       responses:
         201:
           description: If the operation is success
@@ -271,7 +279,7 @@ paths:
                       "id": "abc123",
                       "amount": 100,
                       "description": "Example 1",
-                      "category": "Other"
+                      "category": "Others"
                     }
         400:
           description: If the operation is failed
@@ -320,6 +328,14 @@ paths:
       summary: Used to update an expense
       description: ''
       operationId: ''
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+            example: |-
+              amount:120
+              category:Clothing
       responses:
         200:
           description: If the operation is success. The return data is after the update.
@@ -367,17 +383,12 @@ paths:
       operationId: ''
       responses:
         204:
-          description: If the operation is success.
+          description: If the operation is success
           content:
-            application/json:
+            none:
               examples:
                 default:
-                  value:
-                    {
-                      "statusCode": 204,
-                      "error": "No Content",
-                      "message": ""
-                    }
+                  value: ''
         400:
           description: If the operation is failed
           content:
