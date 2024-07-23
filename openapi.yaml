@@ -138,7 +138,7 @@ paths:
       description: ''
       operationId: ''
       responses:
-        200:
+        204:
           description: If the operation is success
           content:
             application/json:
