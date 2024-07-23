@@ -49,7 +49,8 @@ paths:
                   value:
                     {
                       "id": "abcdef123",
-                      "name": "user"
+                      "name": "user",
+                      "token": "abcdef123456"
                     }
         409:
           description: If the user already exists
@@ -101,7 +102,8 @@ paths:
                   value:
                     {
                       "id": "abcdef123",
-                      "name": "user"
+                      "name": "user",
+                      "token": "jnweinjvw1294134"
                     }
         409:
           description: If the email or password is invalid
