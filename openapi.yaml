@@ -132,6 +132,49 @@ paths:
                   
       tags:
         - accounts
+  "/accounts/signout":
+    post:
+      summary: Used to sign-out a user
+      description: ''
+      operationId: ''
+      responses:
+        200:
+          description: If the operation is success
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "success": true
+                    }
+        400:
+          description: If the operation is failed (request is bad)
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 400,
+                      "error": "Bad Request",
+                      "message": "Something went wrong with the request"
+                    }
+        500:
+          description: If the server error
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 500,
+                      "error": "Internal Server Error",
+                      "message": "Something went wrong with server"
+                    }
+                  
+      tags:
+        - accounts
   "/expenses/{userId}":
     parameters:
       - name: userId
