@@ -10,6 +10,11 @@ const ExpenseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    date: {
+        type: Date,
+        required: true,
+        default: new Date()
+    },
     category: {
         type: String,
         required: true,

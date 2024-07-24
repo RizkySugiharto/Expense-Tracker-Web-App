@@ -16,9 +16,8 @@ function returnGeneralError(error, reply) {
 
 function generateJwtToken(fastify, account) {
     const payload = {
-        username: account.username,
+        id: account._id,
         email: account.email,
-        password: account.password
     }
     const token = fastify.jwt.sign(payload)
 
