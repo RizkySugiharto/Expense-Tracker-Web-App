@@ -4,6 +4,7 @@ const { Account } = require('./models/Account.model')
 async function loadPlugins(fastify) {
     fastify.register(require('@fastify/cors'), {
         origin: process.env.ALLOWED_ORIGINS.split(' '),
+        credentials: true,
         exposedHeaders: ['X-Ratelimit-Reset', 'Retry-After']
     })
     fastify.register(require('@fastify/formbody'))

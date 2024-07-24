@@ -22,15 +22,14 @@ module.exports = function (fastify, opts, done) {
             const token = utils.generateJwtToken(fastify, savedAccount)
             reply.setCookie('Token', token, {
                 path: '/',
-                httpOnly: true,
-                secure: !utils.isDevMode(),
+                sameSite: 'none',
+                secure: true,
                 maxAge: (60 * 60 * 24 * 7) // 1 week
             })
 
             return reply.code(201).send({
                 id: savedAccount._id,
-                name: savedAccount.username,
-                token: token
+                name: savedAccount.username
             })
         } catch (error) {
             return utils.returnGeneralError(error, reply)
@@ -62,15 +61,14 @@ module.exports = function (fastify, opts, done) {
             const token = utils.generateJwtToken(fastify, foundAccount)
             reply.setCookie('Token', token, {
                 path: '/',
-                httpOnly: true,
-                secure: !utils.isDevMode(),
+                sameSite: 'none',
+                secure: true,
                 maxAge: (60 * 60 * 24 * 7) // 1 week
             })
 
-            return reply.code(201).send({
+            return reply.code(200).send({
                 id: foundAccount._id,
-                name: foundAccount.username,
-                token: token
+                name: foundAccount.username
             })
         } catch (error) {
             return utils.returnGeneralError(error, reply)
