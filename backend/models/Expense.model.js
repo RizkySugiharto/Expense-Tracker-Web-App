@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const categoriesJSON = require('../assets/categories.json')
 
 const ExpenseSchema = new mongoose.Schema({
     amount: {
@@ -12,7 +13,7 @@ const ExpenseSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        enum: ['Groceries', 'Leisure', 'Electronics', 'Utilities', 'Clothing', 'Health', 'Others'],
+        enum: categoriesJSON,
         default: 'Others'
     }
 })
