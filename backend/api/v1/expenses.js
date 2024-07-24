@@ -2,8 +2,19 @@ const utils = require('../../utils')
 const { BadRequest } = require('http-errors')
 const { Expense } = require('../../models/Expense.model')
 const { Account } = require('../../models/Account.model')
+const categoriesJSON = require('../../assets/categories.json')
 
 module.exports = function (fastify, opts, done) {
+    fastify.get('/categories', {
+        preHandler: [fastify.authenticate]
+    }, async (req, reply) => {
+        try {
+            return reply.code(200).send(categoriesJSON)
+        } catch (error) {
+            return utils.returnGeneralError(error, reply)
+        }
+    })
+
     fastify.get('/:accountId', {
         preHandler: [fastify.authenticate]
     }, async (req, reply) => {
