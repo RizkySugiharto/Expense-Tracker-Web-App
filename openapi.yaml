@@ -48,9 +48,7 @@ paths:
                 default:
                   value:
                     {
-                      "id": "abcdef123",
-                      "name": "user",
-                      "token": "abcdef123456"
+                      "name": "user"
                     }
         409:
           description: If the user already exists
@@ -101,9 +99,7 @@ paths:
                 default:
                   value:
                     {
-                      "id": "abcdef123",
-                      "name": "user",
-                      "token": "jnweinjvw1294134"
+                      "name": "user"
                     }
         409:
           description: If the email or password is invalid
@@ -172,26 +168,75 @@ paths:
                   
       tags:
         - accounts
-  "/expenses/{userId}":
-    parameters:
-      - name: userId
-        in: path
-        required: true
-        description: User's Id
-        schema:
-          type: string
-          example: abcdef12345
+  "/expenses/categories":
+    get:
+      summary: Used to get all available/supported categories
+      description: ''
+      operationId: ''
+      responses:
+        200:
+          description: If the operation is success
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    [
+                      "Groceries", 
+                      "Leisure", 
+                      "Electronics", 
+                      "Utilities",
+                      "Clothing",
+                      "Health",
+                      "Others"
+                  ]
+        400:
+          description: If the operation is failed
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 400,
+                      "error": "Bad Request",
+                      "message": "Something went wrong with the request"
+                    }
+        500:
+          description: If the server is failed to handle the request
+          content:
+            application/json:
+              examples:
+                default:
+                  value:
+                    {
+                      "statusCode": 500,
+                      "error": "Internal Server Error",
+                      "message": "Something went wrong with the server"
+                    }
+                  
+      tags:
+        - expenses
+  "/expenses":
     get:
       summary: Used to get all user's expenses
       description: ''
       operationId: ''
       parameters:
-        - name: filter
+        - name: date
           in: query
           description: Can be used to filter the expenses by the date
           schema:
             type: string
-            example: "01/07/2023-30/07/2023"
+          examples:
+            'past week':
+              value: "past week"
+            'last month':
+              value: "last month"
+            'last 3 months':
+              value: "last 3 months"
+            'custom':
+              value: "01/07/2023-30/07/2023"
         - name: categories
           in: query
           description: Can be used to filter the expenses by the categories
@@ -211,18 +256,21 @@ paths:
                         "id": "abc123",
                         "amount": 100,
                         "description": "Example 1",
+                        "date": "2024-07-24T15:27:45.047+00:00",
                         "category": "Others"
                       },
                       {
                         "id": "def456",
                         "amount": 120,
                         "description": "Example 2",
+                        "date": "2024-07-24T16:27:45.047+00:00",
                         "category": "Utilities"
                       },
                       {
                         "id": "ghi789",
                         "amount": 50,
                         "description": "Example 3",
+                        "date": "2024-07-24T17:27:45.047+00:00",
                         "category": "Health"
                       }
                     ]
@@ -279,6 +327,7 @@ paths:
                       "id": "abc123",
                       "amount": 100,
                       "description": "Example 1",
+                      "date": "2024-07-24T15:27:45.047+00:00",
                       "category": "Others"
                     }
         400:
@@ -308,15 +357,8 @@ paths:
                   
       tags:
         - expenses
-  "/expenses/{userId}/{expenseId}":
+  "/expenses/{expenseId}":
     parameters:
-      - name: userId
-        in: path
-        required: true
-        description: User's Id
-        schema:
-          type: string
-          example: abcdef12345
       - name: expenseId
         in: path
         required: true
@@ -348,6 +390,7 @@ paths:
                       "id": "abc123",
                       "amount": 120,
                       "description": "Example 1",
+                      "date": "2024-07-24T15:27:45.047+00:00",
                       "category": "Clothing"
                     }
         400:
