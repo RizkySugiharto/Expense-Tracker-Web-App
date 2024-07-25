@@ -28,7 +28,6 @@ module.exports = function (fastify, opts, done) {
             })
 
             return reply.code(201).send({
-                id: savedAccount._id,
                 name: savedAccount.username
             })
         } catch (error) {
@@ -67,7 +66,6 @@ module.exports = function (fastify, opts, done) {
             })
 
             return reply.code(200).send({
-                id: foundAccount._id,
                 name: foundAccount.username
             })
         } catch (error) {
