@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incomes</title>
+    <link rel="stylesheet" href="../style/sidebar.css">
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/expense-incomes.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <aside>
+        <h2>Dashboard</h2>
+        <div class="profile">
+            <img src="https://wldnz.github.io/portofolio/img/profile/kingfrog.png">
+            <p class="user">GUEST</p>
+            <a href="#">Logout</a>
+        </div>
+        <ul class="navigation">
+            <li><a href="../index.html">Dashboard</a></li>
+            <li><a href="#">My Wallet</a></li>
+            <li><a href="./incomes.html">Incomes</a></li>
+            <li><a href="./expense.html">Expense</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </aside>
+
+    <section class="incomes">
+        <h2>Incomes</h2>
+        <header>
+            <h2>Total Income : $16500</h2>
+        </header>
+        <main>
+            <form action="#">
+                <input type="text" placeholder="Salary title" required>
+                <input type="number" placeholder="Salary amount" required>
+                <input type="date" placeholder="Enter A Date" required>
+                <input type="text" placeholder="Enter a Description (Max 20 Character)" maxlength="20" required>
+                <button type="submit"> + Add Income</button>
+            </form>
+            <div class="history">
+                <div class="card">
+                    <img src="https://wldnz.github.io/portofolio/img/profile/kingfrog.png">
+                    <h4>Project Work</h4>
+                    <footer>
+                        <p>200</p>
+                        <p>12/08/2024</p>
+                        <p>as</p>
+                        <p>&times;</p>
+                    </footer>
+                </div>
+                <div class="card">
+                    <img src="https://wldnz.github.io/portofolio/img/profile/kingfrog.png">
+                    <h4>Project Work</h4>
+                    <footer>
+                        <p>200</p>
+                        <p>12/08/2024</p>
+                        <p>halo</p>
+                        <p>&times;</p>
+                    </footer>
+                </div>
+                <div class="card">
+                    <img src="https://wldnz.github.io/portofolio/img/profile/kingfrog.png">
+                    <h4>Project Work</h4>
+                    <footer>
+                        <p>200</p>
+                        <p>12/08/2024</p>
+                        <p>hard work lol</p>
+                        <p>&times;</p>
+                    </footer>
+                </div>
+           </div> 
+        </main>
+    </section>
+
+</body>
+
+<!-- script area -->
+<script src="./checkLogin.js"></script>
+<!--  -->
+</html>

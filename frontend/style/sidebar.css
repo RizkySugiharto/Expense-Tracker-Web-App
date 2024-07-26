@@ -1,0 +1,44 @@
+aside{
+    background:linear-gradient(134deg,rgba(255,255,255, .1), rgba(255,255,255,0));
+    /* background-color: rgba(128, 0, 128,.8); */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 5px white;
+    height: 95vh;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+
+    float: left;
+    margin-right: 20px;
+}
+
+aside .profile {
+   display: grid;
+   gap: 20px;
+   place-items: center;
+}
+
+aside .profile img{
+    height: 80px;
+    border-radius: 50%;
+}
+ul{
+    list-style: none;
+    display: grid;
+    gap: 20px;
+}
+
+ul > li a{
+    font-size: 25px;
+}
+
+ul > li:first-child{
+    margin-top: 20px;
+}
+
+
+.user{
+    font-size: 20px;
+}
