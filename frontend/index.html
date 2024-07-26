@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style/sidebar.css">
+    <link rel="stylesheet" href="./style/index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+    
+    <aside>
+        <h2>Dashboard</h2>
+        <div class="profile">
+            <img src="https://wldnz.github.io/portofolio/img/profile/kingfrog.png" alt="">
+            <p class="user">GUEST</p>
+            <a href="#" onclick="localStorage.clear()">Logout</a>
+        </div>
+        <ul class="navigation">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">My Wallet</a></li>
+            <li><a href="#">Incomes</a></li>
+            <li><a href="./user/expense.html">Expense</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </aside>
+
+    <section class="dashboard">
+        <nav>
+            <input type="search" placeholder="Search here..">
+            <span>Welcome Back, <h2 class="user">Guest Username</h2></span>
+        </nav>
+        <!-- Main  -->
+        <main>
+            <h2>Dashboard</h2>
+            <div class="wrapper">
+                <div class="card">
+                    <p>Amount</p>
+                    <p>45% more this week</p>
+                    <h4>$1200</h4>
+                    <p>&#58;</p>
+                </div>
+                <div class="card">
+                    <p>Income</p>
+                    <p>45% more this week</p>
+                    <h4>$1200</h4>
+                    <p>&#58;</p>
+                </div>
+                <div class="card">
+                    <p>Expense</p>
+                    <p>45% more this week</p>
+                    <h4>$1200</h4>
+                    <p>&#58;</p>
+                </div>
+            </div>
+
+            <div class="graph">
+                <h2>Spending Overview</h2>
+                <p>Monthly review</p>
+            </div>
+
+        </main>
+
+    </section>
+
+
+
+</body>
+
+<!-- script area -->
+<script src="./js/checkLogin.js"></script>
+<!--  -->
+</html>
